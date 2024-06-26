@@ -8,6 +8,7 @@ const { index, show, create, update, destroy } = require('../controllers/photos.
 
 //middlewares
 const validator = require('../middlewares/validator.js');
+const { authenticateWithJWT } = require('../middlewares/jwtToken.js');
 
 //validation schemas
 const { photoBody } = require('../validations/photos_schema.js');
@@ -25,6 +26,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage});
 
+
+
+router.use(authenticateWithJWT);
 //routes
 router.get('/', index); //index
 router.post('/', [upload.single("image"), validator(photoBody)], create); //create

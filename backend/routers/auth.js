@@ -19,7 +19,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage});
 
-router.post('/register', [upload.single("image"), validator(authSchema.registerBody)], auth.register);
+//Route commented because for now there could be only ONE admin
+// router.post('/register', [upload.single("image"), validator(authSchema.registerBody)], auth.register);
 
 router.post('/login', upload.none(), auth.login)
 

@@ -4,7 +4,22 @@ const { makeSlug } = require('../utils.js');
 //index controller CRUD for READ (all or filtered records)
 const index = async ( req, res, next ) => {
     try{
-        const photos = await prisma.photo.findMany();
+        const photos = await prisma.photo.findMany({
+            select:{
+                id: true,
+                title: true,
+                slug: true,
+                description: true,
+                image: true,
+                categories:{
+                    select:{
+                        id: true,
+                        name: true,
+                        slug: true,
+                    }
+                }
+            },
+        });
         return res.json({
             photos,
         });
@@ -16,10 +31,12 @@ const index = async ( req, res, next ) => {
 //show controller CRUD for READ (single record)
 const show = async ( req, res, next ) => {
     const { slug } = req.params;
-
     try{
-        const photo = prisma.photo.findUnique({
-            where:{slug}
+        const photo = await prisma.photo.findUnique({
+            where:{slug},
+            include: {
+                categories: true,
+            },
         })
         return res.json({
             photo,
@@ -39,7 +56,6 @@ const create = async ( req, res, next ) => {
     const image = `photos_images/${filename}`;
 
     //unique slug
-    
     let slug = makeSlug(title);
     try{
         let allSlugs = await prisma.photo.findMany({
@@ -77,8 +93,13 @@ const create = async ( req, res, next ) => {
             data: newPhoto,
         })
         return res.json({
-            photo,
+            new_photo:{
+                id: photo.id,
+                title: photo.title,
+                slug: photo.slug,
+            }
         });
+
     }catch(err){
         return next(err);
     }

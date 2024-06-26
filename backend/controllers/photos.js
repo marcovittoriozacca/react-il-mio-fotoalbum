@@ -43,7 +43,7 @@ const create = async ( req, res, next ) => {
             connect: categories.map(c => ({id: parseInt(c)})),
         }
     }
-    
+
     res.json({
         photo,
     });

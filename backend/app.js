@@ -10,9 +10,12 @@ const { PORT } = process.env || 3000;
 //middlewares
 const errorHandler = require('./middlewares/errorHandler.js');
 
-//photos router
+
+//routers
 const photos = require("./routers/photos.js");
 const auth = require('./routers/auth.js');
+const contacts = require('./routers/contacts.js');
+
 
 //app declaration
 const app = express();
@@ -30,6 +33,8 @@ app.get('/', (req, res) => {
 app.use('/photos', photos); //photos routes and sub-routes
 
 app.use('/auth', auth); //auth routes
+
+app.use('/contact-us', contacts); //contact route
 
 
 app.use(errorHandler);

@@ -105,8 +105,71 @@ const create = async ( req, res, next ) => {
     }
 };
 
+const update = async ( req, res, next ) => {
+    const {title, description, visible} = req.body;
+    const { sanitizedCategories } = req;
+    const { filename } = req.file;
+    const image = `photos_images/${filename}`;
+
+    const { slug } = req.params;
+
+    let uniqueSlug = makeSlug(title);
+    try{
+        let allSlugs = await prisma.photo.findMany({
+            where: {
+                slug: {
+                    not: slug // Escludi lo slug del record corrente
+                }
+            },
+            select: {
+                slug: true,
+            }
+        });
+
+        allSlugs = allSlugs.map(e => e.slug);
+
+        let baseSlug = uniqueSlug;
+        let counter = 1;
+        while(allSlugs.includes(uniqueSlug)){
+            uniqueSlug = `${baseSlug}-${counter}`;
+            counter++;
+        }
+    }catch(err){
+        return next(err);
+    }
+
+    const updatedData = {
+        title,
+        slug: uniqueSlug,
+        description,
+        image,
+        visible,
+        categories:{
+            set: sanitizedCategories,
+        },
+
+    };
+
+    try{
+        const upPhoto = await prisma.photo.update({
+            where:{slug},
+            data: updatedData,
+        });
+        res.json({
+            photo: {
+                id: upPhoto.id,
+                title: upPhoto.title,
+                slug: upPhoto.slug,
+            },
+        })
+    }catch(err){
+        return next(err);
+    }
+}
+
 module.exports = {
     index,
     show,
     create,
+    update,
 };

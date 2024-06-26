@@ -1,8 +1,13 @@
 const express = require('express');
 const multer = require('multer');
 const auth = require('../controllers/auth.js');
+const path = require('path');
 
 const router = express.Router();
+
+
+const validator = require('../middlewares/validator.js');
+const authSchema = require('../validations/auth_schema.js');
 
 //multer storage and upload declaration
 const storage = multer.diskStorage({
@@ -14,7 +19,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage});
 
-router.post('/register', upload.single("image"), auth.register);
+router.post('/register', [upload.single("image"), validator(authSchema.registerBody)], auth.register);
 
 
 module.exports = router

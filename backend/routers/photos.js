@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 
 //variables
-const { index, show, create, update } = require('../controllers/photos.js');
+const { index, show, create, update, destroy } = require('../controllers/photos.js');
 
 //middlewares
 const validator = require('../middlewares/validator.js');
@@ -32,5 +32,6 @@ router.post('/', [upload.single("image"), validator(photoBody)], create); //crea
 router.get('/:slug', show); //show
 router.put('/:slug', [upload.single("image"), validator(photoBody)], update); //update
 
+router.delete('/:slug', destroy); //delete
 //router export
 module.exports = router;

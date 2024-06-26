@@ -167,9 +167,25 @@ const update = async ( req, res, next ) => {
     }
 }
 
+const destroy = async ( req, res, next ) => {
+    const { slug } = req.params;
+
+    try{
+        const photoToDelete = await prisma.photo.delete({
+            where:{slug}
+        });
+        res.json({
+            success: true,
+        })
+    }catch(err){
+        next(err);
+    }
+}
+
 module.exports = {
     index,
     show,
     create,
     update,
+    destroy,
 };

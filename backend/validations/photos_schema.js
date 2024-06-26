@@ -18,6 +18,7 @@ const photoBody = {
             errorMessage: "Title too long, max 100 characters.",
         },
         toString: true,
+        trim: true,
     },
     description: {
         in: ["body"],
@@ -30,6 +31,7 @@ const photoBody = {
         },
         optional: true,
         toString: true,
+        trim: true,
     },
     visible: {
         in: ["body"],
@@ -54,7 +56,7 @@ const photoBody = {
             errorMessage: "You must include at least one category",
         },
         custom:{
-            options: async (values) => {
+            options: async (values, {req}) => {
                 const ids = values.map(id => parseInt(id));
                 const checkIds = ids.find(i => isNaN(parseInt(i)));
                 if(checkIds) throw new Error;
@@ -70,7 +72,8 @@ const photoBody = {
                 }
                 if(categories.length < values.length) throw new Error("One or more ID are not present in the Database");
 
-                return true;
+                return req.sanitizedCategories = values.map(c => ({id: parseInt(c)}));
+                
             }
         }
     }

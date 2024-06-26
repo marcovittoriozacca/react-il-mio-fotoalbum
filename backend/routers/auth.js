@@ -21,5 +21,7 @@ const upload = multer({storage});
 
 router.post('/register', [upload.single("image"), validator(authSchema.registerBody)], auth.register);
 
+router.post('/login', upload.none(), auth.login)
+
 
 module.exports = router

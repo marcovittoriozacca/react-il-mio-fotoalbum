@@ -31,7 +31,7 @@ const registerBody = {
             errorMessage: "Please provide a password",
             bail: true,
         },
-        isLenght:{
+        isLength:{
             options:{min:8},
             errorMessage: "The password must be at least 8 characters long",
             bail: true,

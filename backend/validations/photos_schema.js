@@ -46,11 +46,33 @@ const photoBody = {
         notEmpty:{
             errorMessage: "Category is a required field",
         },
+        isArray:{
+            errorMessage: "Category is an array and only accepts integer values",
+        },
         isLength:{
             options: {min: 1},
             errorMessage: "You must include at least one category",
         },
-        //custo validation to check if the given category exists is yet to be added
+        custom:{
+            options: async (values) => {
+                const ids = values.map(id => parseInt(id));
+                const checkIds = ids.find(i => isNaN(parseInt(i)));
+                if(checkIds) throw new Error;
+                let categories = [];
+                try{
+                    categories = await prisma.category.findMany({
+                        where: {
+                            id: {in: ids},
+                        },
+                    });
+                }catch(err){
+                    throw new Error ("One or more ID are not integers");
+                }
+                if(categories.length < values.length) throw new Error("One or more ID are not present in the Database");
+
+                return true;
+            }
+        }
     }
 }
 

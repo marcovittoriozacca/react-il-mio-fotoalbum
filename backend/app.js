@@ -7,6 +7,9 @@ const cors = require("cors");
 const { HOST } = process.env || 'localhost';
 const { PORT } = process.env || 3000;
 
+//middlewares
+const errorHandler = require('./middlewares/errorHandler.js');
+
 //photos router
 const photos = require("./routers/photos.js");
 
@@ -26,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/photos', photos);
 
 
+app.use(errorHandler);
 
 //server listener
 app.listen(PORT, HOST, () => {

@@ -12,6 +12,7 @@ const errorHandler = require('./middlewares/errorHandler.js');
 
 //photos router
 const photos = require("./routers/photos.js");
+const auth = require('./routers/auth.js');
 
 //app declaration
 const app = express();
@@ -26,7 +27,9 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/photos', photos);
+app.use('/photos', photos); //photos routes and sub-routes
+
+app.use('/auth', auth); //auth routes
 
 
 app.use(errorHandler);

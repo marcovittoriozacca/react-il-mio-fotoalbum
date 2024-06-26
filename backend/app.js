@@ -2,7 +2,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const multer = require("multer");
 
 //variables
 const { HOST } = process.env || 'localhost';
@@ -14,7 +13,8 @@ const photos = require("./routers/photos.js");
 //app declaration
 const app = express();
 
-
+//exposing the public folder
+app.use(express.static("public"))
 
 //routes
 app.get('/', (req, res) => {

@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import axios from "../axios/axiosClient.js";
 const AuthContext = createContext();
+import { useNavigate } from "react-router-dom";
 
 
 
 const AuthProvider = ({children}) => {
+    const navigate = useNavigate();
 
     const initialUserValue = () => {
         const token = localStorage.getItem("token");
@@ -42,12 +44,20 @@ const AuthProvider = ({children}) => {
         }catch(err){
             throw err
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        setUser(initialUserValue);
+        return navigate("/");
     }
 
 
     const values = {
         user,
-        handleLogin
+        handleLogin,
+        handleLogout
     }
 
     return(

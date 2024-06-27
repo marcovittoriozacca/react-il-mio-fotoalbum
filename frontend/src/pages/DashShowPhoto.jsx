@@ -10,13 +10,16 @@ export default function(){
     const { getPhoto } = useGlobal();
     const { slug } = useParams();
     const [photo, setPhoto] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const fetchPhoto = async () => {
         try{
             const photo = await getPhoto(slug);
             setPhoto(photo);
+            setLoading(false);
         }catch(err){
             console.error(err);
+            setLoading(true);
         };
         
     }
@@ -28,12 +31,12 @@ export default function(){
 
     return(<>
         <section>
-
-            <DashSinglePhoto
-                photo={photo}
-                user={{ username: photo?.user?.username, image: photo?.user?.image }}
-            />
-        
+            {!loading && <>
+                <DashSinglePhoto
+                    photo={photo}
+                user={{ username: photo.user.username, image: photo.user.image }}
+                />
+            </>}    
         </section>
     </>)
 

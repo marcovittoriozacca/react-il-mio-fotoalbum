@@ -1,6 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import DashNavIcon from '../../../assets/dashboard/dash-nav-icon.png'
 import { useAuth } from '../../../contexts/AuthContext'
+import UserDropdown from './UserDropdown';
+
 
 const links = [
     {
@@ -14,12 +16,13 @@ const links = [
 ];
 
 export default function(){
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const LoggedUserNavbar = () => {
         return (<>
             {links.map((l,i) => (
                 <li key={`logged-user-link-${i}`}>
-                    <NavLink to={l.href} className={"navlink"}>
+                    <NavLink to={l.href} className={"navlink"} end>
                         {l.name}
                     </NavLink>
                 </li>
@@ -27,34 +30,27 @@ export default function(){
         </>)
     }
 
-    const NormalUser = () => {
-        return(<>
-            <li>
-                <NavLink to="/" className={"navlink"}>
-                    Home Page
-                </NavLink>
-                <NavLink to="/login" className={"navlink"}>
-                    Login
-                </NavLink>
-            </li>
-        </>)
-    }
-
     const { user } = useAuth();
 
     return(<>
         <header className='border-b border-black py-2'>
-            <nav className=' px-3 sm:px-0 container mx-auto flex items-center justify-between'>
-                <ul className='flex'>
+            <nav className=' px-5 flex items-center justify-between gap-x-3'>
+
+                <ul className='flex items-center gap-x-3'>
                     <li>
                         <figure className='w-[25px]'>
                             <img src={DashNavIcon} alt="dash-nav-icon"/>
                         </figure>
                     </li>
+                    <LoggedUserNavbar/>
                 </ul>
-                <ul className='flex items-center gap-x-4'>
-                    {user? <LoggedUserNavbar/> : <NormalUser/>}
-                </ul>
+            {user && <>
+                <UserDropdown
+                    username={user.username}
+                    image={`${baseUrl}/${user.image}`}
+                />
+            </>}
+                
             </nav>
         </header>
     </>)

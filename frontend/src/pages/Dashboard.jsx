@@ -19,13 +19,15 @@ export default function(){
     }
 
     useEffect(()=>{
+        if(!user){
+            return
+        }
         getRecords();
     },[user?.id, filter]);
 
 
     return(<>
     <section>
-
         <div id="filterSection" className="py-2">
             <input className="border focus:border-transparent" placeholder={"Filter photos..."} type="text" name="filter" id="filter"  value={filter} onChange={(e)=>setFilter(curr => e.target.value)}/>
         </div>

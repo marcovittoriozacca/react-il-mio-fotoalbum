@@ -19,8 +19,12 @@ instance.interceptors.response.use(
         return response;
     },
     function (error) {
-        if (error.response.status === 401) {
+        
+        
+
+        if (error.response?.status === 401) {
             localStorage.removeItem("user");
+            localStorage.removeItem("token");
             window.location = "/login";
         }
         return Promise.reject(error);

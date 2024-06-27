@@ -4,8 +4,9 @@ import './TableRecord.css';
 import { HiOutlineArrowUpRight as Show } from "react-icons/hi2";
 import { HiPencilAlt as Edit } from "react-icons/hi";
 import { FaTrash as Delete } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-export default function({image, title, visible, categories, user}){
+export default function({image, title, slug, visible, categories, user}){
     const baseUrl = import.meta.env.VITE_BASE_URL
     return(<>
         <td className="flex justify-center">
@@ -33,14 +34,16 @@ export default function({image, title, visible, categories, user}){
         </td>
         <td>
             <div className="flex items-center justify-center gap-x-3">
-                <button type="button" className="edit" aria-label="edit">
+                <button type="button" className="edit" aria-label="edit">                    
                     <Edit/>
                 </button>
                 <button type="button" className="delete" aria-label="delete">
                     <Delete/>
                 </button>
                 <button type="button" className="show" aria-label="show">
-                    <Show/>
+                    <Link to={`/dashboard/${slug}`}>
+                        <Show/>
+                    </Link>
                 </button>
             </div>
         </td>

@@ -62,7 +62,8 @@ const show = async ( req, res, next ) => {
                     select:{
                         id: true,
                         email:true,
-                        username: true,    
+                        username: true,
+                        image: true,  
                     }
                 },
             },

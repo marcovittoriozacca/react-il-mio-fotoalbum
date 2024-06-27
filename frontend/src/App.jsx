@@ -6,6 +6,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import DashboardLayout from "./layouts/DashboardLayout"
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
+import DashShowPhoto from "./pages/DashShowPhoto"
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
       {/* admin and logged user dashboard */}
       <Route path="/dashboard" element={<DashboardLayout/>}>
         <Route index element={<Dashboard/>}/>
+        <Route path=":slug" element={<DashShowPhoto/>}/>
 
       </Route>
 

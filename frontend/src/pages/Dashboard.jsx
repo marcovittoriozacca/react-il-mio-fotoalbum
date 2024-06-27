@@ -47,6 +47,7 @@ export default function(){
                         <TableRecord
                             image={r.image}
                             title={r.title}
+                            slug={r.slug}
                             visible={r.visible === true? "true" : "false"}
                             categories={r.categories.map(c => c.name)}
                             user={{ id: r.user.id, username: r.user.username }}

@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound"
 
 import DashboardLayout from "./layouts/DashboardLayout"
 import Dashboard from "./pages/Dashboard"
+import Login from "./pages/Login"
 function App() {
   return (
     <>
@@ -17,7 +18,10 @@ function App() {
       
       {/* admin and logged user dashboard */}
       <Route path="/dashboard" element={<DashboardLayout/>}>
-         <Route index element={<Dashboard/>}/>
+        <Route index element={<Dashboard/>}/>
+
+
+        <Route path="login" element={<Login/>}/>
       </Route>
 
       <Route path="*" element={<NotFound/>}/>

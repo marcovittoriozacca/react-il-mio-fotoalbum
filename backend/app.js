@@ -22,7 +22,7 @@ const categories = require('./routers/categories.js');
 const app = express();
 
 //exposing the public folder
-app.use(cors);
+app.use(cors());
 app.use(express.static("public"))
 
 //routes

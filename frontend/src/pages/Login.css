@@ -1,0 +1,31 @@
+input[type="text"], input[type="password"]{
+    @apply focus:outline-none focus:ring ring-[#8ecae6] rounded-sm py-1 px-2;
+}
+
+.form{
+    @apply flex justify-center;
+}
+
+.form-wrapper{
+    @apply flex flex-col gap-y-5 bg-sky-300/50 py-10 px-32 rounded-md
+}
+
+label{
+    @apply flex flex-col;
+}
+
+.password-wrapper{
+    @apply relative w-min;
+}
+
+.password{
+    @apply pr-7 py-1;
+}
+
+.show-password{
+    @apply absolute bottom-1/2 translate-y-1/2 right-2;
+}
+
+.submit-button{
+    @apply bg-[#219ebc] hover:bg-[#219ebc]/85 transition-colors duration-100 ease-out py-2 rounded-sm text-white; 
+}

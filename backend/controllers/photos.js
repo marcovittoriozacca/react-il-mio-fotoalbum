@@ -18,6 +18,7 @@ const index = async ( req, res, next ) => {
                 title: true,
                 slug: true,
                 description: true,
+                visible: true,
                 image: true,
                 categories:{
                     select:{

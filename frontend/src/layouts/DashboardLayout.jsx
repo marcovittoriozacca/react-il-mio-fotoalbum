@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/header/NavBar";
+import DashNavbar from "../components/dashboard/dashboardHeader/DashNavbar";
+
 export default function(){
     return(<>
-        <NavBar/>
+        <DashNavbar/>
         <Outlet/>
     </>)
 }

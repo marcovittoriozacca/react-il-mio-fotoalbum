@@ -1,0 +1,11 @@
+.vis{
+    @apply rounded-full text-2xl p-1;
+}
+
+.visible{
+    @apply bg-green-400 rounded-full text-2xl p-1;
+}
+
+.not-visible{
+    @apply bg-red-500;
+}

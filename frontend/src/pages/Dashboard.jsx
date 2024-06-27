@@ -19,7 +19,7 @@ export default function(){
 
     useEffect(()=>{
         getRecords();
-    },[user.id])
+    },[user?.id])
 
 
     return(<>
@@ -29,8 +29,8 @@ export default function(){
                 <tr>
                     <th>Image</th>
                     <th>Title</th>
-                    <th>Visible</th>
                     <th>Categories</th>
+                    <th>Visible</th>
                     <th>User</th>
                     <th>Actions</th>
                 </tr>

@@ -3,8 +3,16 @@ const { makeSlug } = require('../utils.js');
 
 //index controller CRUD for READ (all or filtered records)
 const index = async ( req, res, next ) => {
+    const { filter } = req.query;
+    let where = {
+        title:{
+            contains: filter,
+        },
+    };
+
     try{
         const photos = await prisma.photo.findMany({
+            where,
             select:{
                 id: true,
                 title: true,
@@ -16,6 +24,13 @@ const index = async ( req, res, next ) => {
                         id: true,
                         name: true,
                         slug: true,
+                    }
+                },
+                user:{
+                    select:{
+                        id: true,
+                        email: true,
+                        username: true,
                     }
                 }
             },
@@ -35,8 +50,22 @@ const show = async ( req, res, next ) => {
         const photo = await prisma.photo.findUnique({
             where:{slug},
             include: {
-                categories: true,
+                categories:{
+                    select: {
+                        id: true,
+                        name: true,
+                        slug: true,
+                    },
+                },
+                user: {
+                    select:{
+                        id: true,
+                        email:true,
+                        username: true,    
+                    }
+                },
             },
+            
         })
         return res.json({
             photo,
@@ -52,6 +81,7 @@ const create = async ( req, res, next ) => {
     const {title, description, visible} = req.body;
     const { sanitizedCategories } = req
     const { filename } = req.file;
+    const user = req.user;
 
     const image = `photos_images/${filename}`;
 
@@ -82,6 +112,7 @@ const create = async ( req, res, next ) => {
         description,
         visible,
         image,
+        userId: user,
         categories:{
             connect: sanitizedCategories,
         }

@@ -21,6 +21,7 @@ const authenticateWithJWT = ( req, res, next ) => {
             if(err){
                 return next(err);
             }
+            req.user = user.id;
             return next();
         });
 }

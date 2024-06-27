@@ -15,6 +15,7 @@ const errorHandler = require('./middlewares/errorHandler.js');
 const photos = require("./routers/photos.js");
 const auth = require('./routers/auth.js');
 const contacts = require('./routers/contacts.js');
+const categories = require('./routers/categories.js');
 
 
 //app declaration
@@ -35,6 +36,8 @@ app.use('/photos', photos); //photos routes and sub-routes
 app.use('/auth', auth); //auth routes
 
 app.use('/contact-us', contacts); //contact route
+
+app.use('/categories', categories); //categories
 
 
 app.use(errorHandler);

@@ -7,10 +7,11 @@ import './Dashboard.css';
 export default function(){
     const { user } = useAuth();
     const [records, setRecords] = useState([]);
+    const [filter, setFilter] = useState('');
 
     const getRecords = async () => {
         try{
-            const response = await axios.get('/photos');
+            const response = await axios.get(`/photos?filter=${filter}`);
             setRecords(response.data.photos);
         }catch(err){
             console.error(err)
@@ -19,11 +20,16 @@ export default function(){
 
     useEffect(()=>{
         getRecords();
-    },[user?.id])
+    },[user?.id, filter]);
 
 
     return(<>
     <section>
+
+        <div id="filterSection" className="py-2">
+            <input className="border focus:border-transparent" placeholder={"Filter photos..."} type="text" name="filter" id="filter"  value={filter} onChange={(e)=>setFilter(curr => e.target.value)}/>
+        </div>
+
         <table className="table-auto w-full text-center">
             <thead className="border-b">
                 <tr>
@@ -47,7 +53,6 @@ export default function(){
                         />
                     </tr>
                 ))}
-
             </tbody>
         </table>
     </section>

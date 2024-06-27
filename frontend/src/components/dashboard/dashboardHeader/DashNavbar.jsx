@@ -4,6 +4,10 @@ import { useAuth } from '../../../contexts/AuthContext'
 
 const links = [
     {
+        name: "Home Page",
+        href: "/",
+    },
+    {
         name: "Photos",
         href: "/dashboard",
     }
@@ -14,8 +18,8 @@ export default function(){
     const LoggedUserNavbar = () => {
         return (<>
             {links.map((l,i) => (
-                <li>
-                    <NavLink to={l.href} key={`logged-user-link-${l.i}`}>
+                <li key={`logged-user-link-${i}`}>
+                    <NavLink to={l.href} className={"navlink"}>
                         {l.name}
                     </NavLink>
                 </li>
@@ -26,7 +30,10 @@ export default function(){
     const NormalUser = () => {
         return(<>
             <li>
-                <NavLink to="/login">
+                <NavLink to="/" className={"navlink"}>
+                    Home Page
+                </NavLink>
+                <NavLink to="/login" className={"navlink"}>
                     Login
                 </NavLink>
             </li>
@@ -45,7 +52,7 @@ export default function(){
                         </figure>
                     </li>
                 </ul>
-                <ul>
+                <ul className='flex items-center gap-x-4'>
                     {user? <LoggedUserNavbar/> : <NormalUser/>}
                 </ul>
             </nav>

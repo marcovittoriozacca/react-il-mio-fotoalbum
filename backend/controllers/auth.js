@@ -12,7 +12,7 @@ const register = async ( req, res, next ) => {
     const newUser = {
         email,
         password: hashedPassword,
-        image: `users_image/${filename}`,
+        image: `users_images/${filename}`,
         username: username || 'User',
     };
     

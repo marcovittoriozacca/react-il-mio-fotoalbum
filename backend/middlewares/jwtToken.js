@@ -19,6 +19,7 @@ const authenticateWithJWT = ( req, res, next ) => {
     jwt.verify(token, process.env.JWT_SECRET,
         (err, user) => {
             if(err){
+                err.status = 401;
                 return next(err);
             }
             req.user = user.id;

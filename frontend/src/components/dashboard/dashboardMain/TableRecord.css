@@ -1,0 +1,27 @@
+.vis{
+    @apply rounded-full text-2xl p-1;
+}
+
+.visible{
+    @apply bg-green-400 rounded-full text-2xl p-1;
+}
+
+.not-visible{
+    @apply bg-red-500;
+}
+
+
+.show{
+    @apply bg-green-400;
+}
+
+.delete{
+    @apply bg-red-400;
+}
+.edit{
+    @apply bg-yellow-300;
+}
+
+button[type="button"]{
+    @apply text-lg rounded-sm p-[5px];
+}

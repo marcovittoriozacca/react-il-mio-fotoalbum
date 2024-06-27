@@ -1,24 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoEye as Visible, IoEyeOff as Hidden} from "react-icons/io5";
 import './Login.css';
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function(){
-    const initialUser = {
+    const navigate = useNavigate();
+    const { handleLogin, user } = useAuth();
+
+    const initialData = {
         email: "",
         password: "",
     };
-
-    const [user, setUser] = useState(initialUser);
+    const [formData, setFormData] = useState(initialData)
     const [showPassword, setShowPassword] = useState(false);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        try{
+            handleLogin(formData);
+            navigate("/dashboard");
+        }catch(err){
+            console.error(err);
+        }
+
     }
 
     const handleInputs = (e) => {
-        setUser(curr => ({...curr, [e.target.name]: e.target.value}));
+        setFormData(curr => ({...curr, [e.target.name]: e.target.value}));
     }
+
+    useEffect(()=>{
+        if(user){
+            navigate("/dashboard");
+        }
+    },[user])
 
     return(<>
         <section>
@@ -27,7 +44,7 @@ export default function(){
                     <div>
                         <label>
                             Email
-                                <input type="text" name="email" id="email" value={user.email} onChange={handleInputs} />
+                                <input type="text" name="email" id="email" value={formData.email} onChange={handleInputs} />
                         </label>
                     </div>
 
@@ -35,8 +52,8 @@ export default function(){
                         <label>
                             Password
                             <div className="password-wrapper">
-                                <input className="password" type={showPassword? "text" : "password"} name="password" id="password" value={user.password} onChange={handleInputs} />
-                                <button className="show-password" onClick={() => setShowPassword(curr => !curr)}>
+                                <input className="password" type={showPassword? "text" : "password"} name="password" id="password" value={formData.password} onChange={handleInputs} />
+                                <button type="button" className="show-password" onClick={() => setShowPassword(curr => !curr)}>
                                     {showPassword? <Hidden/> : <Visible/>}
                                 </button>
                             </div>

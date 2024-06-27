@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 
-
 export default function(){
 
     const [records, setRecords] = useState([]);
-
-    useEffect(() => {
-        console.log("hello");
-    },[])
 
     return(<>
         <table className="table-auto">

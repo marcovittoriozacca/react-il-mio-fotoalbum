@@ -42,17 +42,17 @@ export default function(){
             <form action="" onSubmit={handleSubmit} className="form">
                 <div className="form-wrapper">
                     <div>
-                        <label>
+                        <label className="label">
                             Email
-                                <input type="text" name="email" id="email" value={formData.email} onChange={handleInputs} />
+                                <input className="input-style" type="text" name="email" id="email" value={formData.email} onChange={handleInputs} />
                         </label>
                     </div>
 
                     <div>
-                        <label>
+                        <label className="label">
                             Password
                             <div className="password-wrapper">
-                                <input className="password" type={showPassword? "text" : "password"} name="password" id="password" value={formData.password} onChange={handleInputs} />
+                                <input className="password input-style" type={showPassword? "text" : "password"} name="password" id="password" value={formData.password} onChange={handleInputs} />
                                 <button type="button" className="show-password" onClick={() => setShowPassword(curr => !curr)}>
                                     {showPassword? <Hidden/> : <Visible/>}
                                 </button>

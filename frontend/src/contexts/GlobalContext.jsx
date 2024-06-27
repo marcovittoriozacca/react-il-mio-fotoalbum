@@ -14,8 +14,15 @@ const GlobalProvider = ({children}) => {
         };
     }
 
+    const getCategories = () => {
+            return axios.get('/categories')
+                    .then((res) => res.data.categories);
+    }
+
+
     const values = {
         getPhoto,
+        getCategories
     };
 
     return(

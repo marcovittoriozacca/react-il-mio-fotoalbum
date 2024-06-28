@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import axios from '../axios/axiosClient.js';
 import { useGlobal } from '../contexts/GlobalContext';
 import HomePagePhotoCard from '../components/main/HomePagePhotoCard.jsx';
+import ContactForm from '../components/main/ContactForm.jsx';
 
 export default function(){
     const { baseUrl } = useGlobal();
     const [photos, setPhotos] = useState([]);
     const [filter, setFilter] = useState("");
+
     const [loading, setLoading] = useState(true);
 
     const fetchPhotos = async () => {
@@ -41,6 +43,7 @@ export default function(){
                     ))}
                 </div>
             </section>
+            <ContactForm/>
         </>}
     </>)
 }

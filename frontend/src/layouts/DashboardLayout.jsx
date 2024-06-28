@@ -16,6 +16,8 @@ export default function(){
 
     return(<>
         <DashNavbar/>
+        <main className="h-[100vh-67px]">
         <Outlet/>
+        </main>
     </>)
 }

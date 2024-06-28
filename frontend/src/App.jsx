@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
 import DashShowPhoto from "./pages/DashShowPhoto"
 import CreatePhoto from "./pages/CreatePhoto"
+import EditPhoto from "./pages/EditPhoto"
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
         <Route index element={<Dashboard/>}/>
         <Route path="create-new-photo" element={<CreatePhoto/>}/>
         <Route path=":slug" element={<DashShowPhoto/>}/>
+        <Route path="edit/:slug" element={<EditPhoto/>}/>
       </Route>
 
       <Route path="*" element={<NotFound/>}/>

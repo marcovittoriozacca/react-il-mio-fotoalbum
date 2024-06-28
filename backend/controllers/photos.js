@@ -141,8 +141,6 @@ const create = async ( req, res, next ) => {
 const update = async ( req, res, next ) => {
     const {title, description, visible} = req.body;
     const { sanitizedCategories } = req;
-    const { filename } = req.file;
-    const image = `photos_images/${filename}`;
 
     const { slug } = req.params;
 
@@ -175,13 +173,15 @@ const update = async ( req, res, next ) => {
         title,
         slug: uniqueSlug,
         description,
-        image,
         visible,
         categories:{
             set: sanitizedCategories,
         },
-
     };
+
+    if(req.file){
+        updatedData.image = `photos_images/${req.file.filename}`;
+    }
 
     try{
         const upPhoto = await prisma.photo.update({

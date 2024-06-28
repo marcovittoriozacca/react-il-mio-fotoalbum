@@ -34,17 +34,19 @@ export default function({image, title, slug, visible, categories, user}){
         </td>
         <td>
             <div className="flex items-center justify-center gap-x-3">
-                <button type="button" className="edit" aria-label="edit">                    
-                    <Edit/>
-                </button>
+                <Link to={`/dashboard/edit/${slug}`}>
+                    <button type="button" className="edit" aria-label="edit">                    
+                        <Edit/>
+                    </button>
+                </Link>
                 <button type="button" className="delete" aria-label="delete">
                     <Delete/>
                 </button>
-                <button type="button" className="show" aria-label="show">
-                    <Link to={`/dashboard/${slug}`}>
+                <Link to={`/dashboard/${slug}`}>
+                    <button type="button" className="show" aria-label="show">
                         <Show/>
-                    </Link>
-                </button>
+                    </button>
+                </Link>
             </div>
         </td>
     </>)

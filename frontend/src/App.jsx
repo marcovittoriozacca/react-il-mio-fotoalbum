@@ -8,6 +8,8 @@ import Login from "./pages/Login"
 import DashShowPhoto from "./pages/DashShowPhoto"
 import CreatePhoto from "./pages/CreatePhoto"
 import EditPhoto from "./pages/EditPhoto"
+import Categories from "./pages/Categories"
+import CreateCategory from "./pages/CreateCategory"
 function App() {
   return (
     <>
@@ -22,9 +24,16 @@ function App() {
       {/* admin and logged user dashboard */}
       <Route path="/dashboard" element={<DashboardLayout/>}>
         <Route index element={<Dashboard/>}/>
+
+        {/* photos routes */}
         <Route path="create-new-photo" element={<CreatePhoto/>}/>
         <Route path=":slug" element={<DashShowPhoto/>}/>
         <Route path="edit/:slug" element={<EditPhoto/>}/>
+
+        {/* categories routes */}
+        <Route path="categories/list" element={<Categories/>}/>
+        <Route path="categories/create" element={<CreateCategory/>}/>
+
       </Route>
 
       <Route path="*" element={<NotFound/>}/>

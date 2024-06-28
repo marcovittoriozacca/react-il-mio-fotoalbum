@@ -18,6 +18,14 @@ const links = [
         name: "Post a new Photo",
         href: `/${dashboard}/create-new-photo`,
     },
+    {
+        name: "Categories",
+        href: `/${dashboard}/categories/list`,
+    },
+    {
+        name: "Create a new Category",
+        href: `/${dashboard}/categories/create`,
+    },
 ];
 
 export default function(){

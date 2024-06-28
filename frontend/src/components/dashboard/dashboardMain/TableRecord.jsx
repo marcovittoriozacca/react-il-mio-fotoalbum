@@ -6,7 +6,7 @@ import { HiPencilAlt as Edit } from "react-icons/hi";
 import { FaTrash as Delete } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export default function({image, title, slug, visible, categories, user}){
+export default function({image, title, slug, visible, categories, user, handleGetRecordToDelete}){
     const baseUrl = import.meta.env.VITE_BASE_URL
     return(<>
         <td className="flex justify-center">
@@ -39,7 +39,7 @@ export default function({image, title, slug, visible, categories, user}){
                         <Edit/>
                     </button>
                 </Link>
-                <button type="button" className="delete" aria-label="delete">
+                <button type="button" className="delete" aria-label="delete" onClick={() => handleGetRecordToDelete(slug, title)}>
                     <Delete/>
                 </button>
                 <Link to={`/dashboard/${slug}`}>

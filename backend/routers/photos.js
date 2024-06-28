@@ -28,9 +28,9 @@ const upload = multer({storage});
 
 
 
-router.use(authenticateWithJWT);
-//routes
 router.get('/', index); //index
+//routes
+router.use(authenticateWithJWT);
 router.post('/', [upload.single("image"), validator(photoBody)], create); //create
 
 router.get('/:slug', show); //show

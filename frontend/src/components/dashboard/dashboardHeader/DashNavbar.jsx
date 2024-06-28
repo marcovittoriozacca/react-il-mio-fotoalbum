@@ -3,6 +3,7 @@ import DashNavIcon from '../../../assets/dashboard/dash-nav-icon.png'
 import { useAuth } from '../../../contexts/AuthContext'
 import UserDropdown from './UserDropdown';
 
+const dashboard = "dashboard";
 
 const links = [
     {
@@ -11,8 +12,20 @@ const links = [
     },
     {
         name: "Photos",
-        href: "/dashboard",
-    }
+        href: `/${dashboard}`,
+    },
+    {
+        name: "Post a new Photo",
+        href: `/${dashboard}/create-new-photo`,
+    },
+    {
+        name: "Categories",
+        href: `/${dashboard}/categories/list`,
+    },
+    {
+        name: "Create a new Category",
+        href: `/${dashboard}/categories/create`,
+    },
 ];
 
 export default function(){

@@ -1,4 +1,4 @@
-input[type="text"], input[type="password"]{
+.input-style{
     @apply focus:outline-none focus:ring ring-[#8ecae6] rounded-sm py-1 px-2;
 }
 
@@ -10,7 +10,7 @@ input[type="text"], input[type="password"]{
     @apply flex flex-col gap-y-5 bg-sky-300/50 py-10 px-32 rounded-md
 }
 
-label{
+.label{
     @apply flex flex-col;
 }
 

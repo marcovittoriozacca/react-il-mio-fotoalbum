@@ -5,17 +5,23 @@ const GlobalContext = createContext();
 
 const GlobalProvider = ({children}) => {
 
-    const getPhoto = async (slug) => {
-        try{
-            const response = await axios.get(`/photos/${slug}`);
-            return response.data.photo;
-        }catch(err){
-            console.error(err);
-        };
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    const getPhoto = (slug) => {
+        return axios.get(`/photos/${slug}`)
+                    .then((res) => res.data.photo);
     }
+
+    const getCategories = () => {
+            return axios.get('/categories')
+                    .then((res) => res.data.categories);
+    }
+
 
     const values = {
         getPhoto,
+        getCategories,
+        baseUrl
     };
 
     return(

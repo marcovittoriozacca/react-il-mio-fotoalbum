@@ -32,6 +32,7 @@ const index = async ( req, res, next ) => {
                         id: true,
                         email: true,
                         username: true,
+                        image: true,
                     }
                 }
             },

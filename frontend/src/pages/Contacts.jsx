@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from '../axios/axiosClient.js';
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { dateTimeFormatter } from '../utils.js';
+import { dateTimeFormatter } from '../utils.jsx';
 
 export default function(){
     const { user } = useAuth();

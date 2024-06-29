@@ -74,6 +74,18 @@ const photoBody = {
 
                 return req.sanitizedCategories = values.map(c => ({id: parseInt(c)}));
                 
+            },
+        },
+    },
+    image: {
+        custom:{
+            options: (image, {req}) => {
+                if(req.method === "POST"){
+                    if(!req.file){
+                        throw new Error ("You must upload a photo");
+                    }
+                }
+                return true;
             }
         }
     }

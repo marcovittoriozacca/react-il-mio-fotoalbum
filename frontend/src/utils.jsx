@@ -63,6 +63,14 @@ const getTime = dateTime => {
     return `${hour}:${minutes}`;
 };
 
+const handleErrors = (errsArray, field) => {
+    const errors = errsArray.filter(e => e.path === field);
+    if(errors.length > 0){
+        return (<span className="text-red-500 italic">{errors[0].msg}</span>)
+    }
+}
+
 export{
     dateTimeFormatter,
+    handleErrors
 };

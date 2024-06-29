@@ -81,7 +81,6 @@ export default function(){
                     <div>
                         <label>
                             Visible <em>(by checking this, you make the photo visible for everyone)</em>
-                            {console.log(formData.visible)}
                             <input type="checkbox" name="visible" id="visible" checked={formData.visible} onChange={handleInputFields}/>
                         </label>
                     </div>

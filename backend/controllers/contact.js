@@ -18,4 +18,28 @@ const contact = async ( req, res, next ) => {
     }
 }
 
-module.exports = contact;
+const getAllContacts = async ( req, res, next ) => {
+    try{
+        const contacts = await prisma.contact.findMany({
+            select:{
+                email: true,
+                message: true,
+                createdAt: true,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+        return res.json({
+            contacts
+        })
+    }catch(err){
+        console.error(err);
+    }
+}
+
+
+module.exports = {
+    contact,
+    getAllContacts
+};

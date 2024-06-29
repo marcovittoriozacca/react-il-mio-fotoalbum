@@ -31,7 +31,7 @@ export default function(){
 
     return(<>
         {!loading && <>
-            <section>
+            <section className='container mx-auto'>
                 <input type="text" name="filter" id="filter" value={filter} onChange={(e) => setFilter(e.target.value)} />
                 <div className='flex gap-5 flex-wrap'>
                     {photos.map((p,i)=>(

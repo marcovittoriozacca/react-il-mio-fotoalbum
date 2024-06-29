@@ -11,8 +11,8 @@ export default function(){
 
     return(<>
         <header>
-            <nav className='flex items-center'>
-                <ul className='flex'>
+            <nav className='flex items-center container mx-auto py-3 gap-x-3'>
+                <ul>
                     <li>
                         <Link to="/">
                             <figure className='w-[50px]'>

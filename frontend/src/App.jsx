@@ -10,6 +10,7 @@ import CreatePhoto from "./pages/CreatePhoto"
 import EditPhoto from "./pages/EditPhoto"
 import Categories from "./pages/Categories"
 import CreateCategory from "./pages/CreateCategory"
+import Contacts from "./pages/Contacts"
 function App() {
   return (
     <>
@@ -33,7 +34,7 @@ function App() {
         {/* categories routes */}
         <Route path="categories/list" element={<Categories/>}/>
         <Route path="categories/create" element={<CreateCategory/>}/>
-
+        <Route path="contacts/list" element={<Contacts/>}/>
       </Route>
 
       <Route path="*" element={<NotFound/>}/>

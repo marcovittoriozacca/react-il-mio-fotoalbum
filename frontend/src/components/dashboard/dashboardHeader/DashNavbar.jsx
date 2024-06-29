@@ -26,6 +26,10 @@ const links = [
         name: "Create a new Category",
         href: `/${dashboard}/categories/create`,
     },
+    {
+        name: "Contacts",
+        href: `/${dashboard}/contacts/list`,
+    },
 ];
 
 export default function(){

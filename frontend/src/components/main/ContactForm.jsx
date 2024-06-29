@@ -41,15 +41,15 @@ export default function(){
     },[sent]);
 
     return(<>
-    <div className="border-[.5px] mt-10">
-        <div className="flex items-center p-5 bg-[#eff4f8]">
-            <div className="w-1/3 p-3">
+    <div className="mt-10 bg-[#eff4f8]">
+        <div className="flex items-center py-5 container mx-auto">
+            <div className="w-1/3 py-3">
                 <h1 className="text-3xl font-bolder pb-5">Contact us!</h1>
                 <figure>
                     <img src={ContactUsImage} alt="Contact-us" />
                 </figure>
             </div>
-            <form action="" onSubmit={handleSubmit} className="w-2/3 border rounded-md p-5">
+            <form action="" onSubmit={handleSubmit} className="w-2/3 rounded-md p-5">
 
                 <div className="mb-3">
                     <label>
